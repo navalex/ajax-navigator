@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <title>Ajax-Navigator, ajaxify your website navigation easily</title>
+
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+        <link rel="stylesheet" href="style.css">
+
+        <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+        <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+        <![endif]-->
+    </head>
+
+    <body>
+        <nav class="navbar navbar-default navbar-fixed-top">
+            <div class="container-fluid">
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#main-navbar" aria-expanded="false">
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <a class="navbar-brand" href="#">Ajax-Navigator</a>
+                </div>
+
+                <div class="collapse navbar-collapse" id="main-navbar">
+                    <ul class="nav navbar-nav">
+                        <li><a href="./index.html">Home</a></li>
+                        <li><a href="./internal1.html">Example 1</a></li>
+                        <li><a href="./internal2.html">Example 2</a></li>
+                    </ul>
+
+                    <ul class="nav navbar-nav navbar-right">
+                        <li><a href="https://github.com/navalex/ajax-navigator">View on Github</a></li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+
+        <div class="jumbotron jumbotron-wave" align="center">
+            <div class="ocean">
+                <div class="wave"></div>
+                <div class="wave"></div>
+            </div>
+
+            <div class="container container-hidden" style="opacity:0;">
+                <h1>Welcome on Ajax-Navigator !</h1>
+                <p>In this website, you can test this jQuery plugin and see how does it work.</p>
+                <a href="#" class="btn btn-info btn-lg" type="button" data-toggle="modal" data-target="#downloadModal">Download</a>
+            </div>
+
+            <div class="container container-absolute">
+                <h1>Welcome on Ajax-Navigator !</h1>
+                <p>In this website, you can test this jQuery plugin and see how does it work.</p>
+                <a href="#" class="btn btn-info btn-lg" type="button" data-toggle="modal" data-target="#downloadModal">Download</a>
+            </div>
+        </div>
+
+        <div class="container" id="ajax-content">
+            <div id="example-section">
+                <h2>Example</h2>
+                <p>Just use link on the top (Home, Example 1 and Example 2)</p>
+            </div>
+
+            <hr>
+
+            <div id="simple-use-section">
+                <h2>Simple use</h2>
+                <p>First, add jQuery and the plugin in all pages of the site.</p>
+    <pre>&lt;script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"&gt;&lt;/script&gt;
+    &lt;script src="path/to/ajax-navigator.js"&gt;&lt;/script&gt;</pre>
+
+                <p>Next, add this script just after including the plugin, and change <code>#ajax-content</code> by the selector of your container of the ajax navigation.</p>
+
+<pre>&lt;script type="text/javascript"&gt;
+    jQuery(document).ready(function($) {
+        $.ajax_navigator({
+            'page_container': '#ajax-content'
+        });
+    });
+&lt;/script&gt;</pre>
+            </div>
+
+            <hr>
+
+            <div id="use-callback-section">
+                <h2>Use with callback</h2>
+                <p>The plugin allow you to use a callback function, which will be launch after each ajax call.</p>
+                <p>The callback function give you access to the element which called the new page by using <code>$(this)</code>.</p>
+
+<pre>&lt;script type="text/javascript"&gt;
+    jQuery(document).ready(function($) {
+        $.ajax_navigator({
+            'page_container': '#ajax-content'
+        }, <b>function() {
+            // Do your stuff
+        }</b>);
+    });
+&lt;/script&gt;</pre>
+            </div>
+
+            <hr>
+
+            <div id="option-section">
+                <h2>Use options</h2>
+                <p>You can custom some options of the plugin, like the container for the request.</p>
+
+                <div id="option-list">
+                    <p><b>page_container (default: '.container')</b><br>The selector of the content which gonna be load by ajax. This selector need to exist on all loaded pages.</p>
+                    <p><b>fadeOut (default: true)</b><br>Choose to active or not a fadeOut effect on page change.</p>
+                    <p><b>fadeOutDuration (default: 1000)</b><br>Set the duration in milliseconds of the fade out effect.</p>
+                    <p><b>fadeIn (default: true)</b><br>Choose to active or not a fadeIn effect on page change.</p>
+                    <p><b>fadeInDuration (default: 1000)</b><br>Set the duration in milliseconds of the fade in effect.</p>
+                </div>
+            </div>
+
+        </div>
+
+        <!-- Download Modal -->
+        <div class="modal fade" id="downloadModal" tabindex="-1" role="dialog">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                        <h4 class="modal-title">Download the plugin</h4>
+                    </div>
+                    <div class="modal-body" align="center">
+                        <p>Choose the version of the plugin you want</p>
+                        <p>
+                            <a href="ajax-navigator.min.js" class="btn btn-primary" download>Compressed</a>
+                            <a href="ajax-navigator.js" class="btn btn-warning" download>Un-Compressed</a>
+                        </p>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+        <script src="../ajax-navigator.js"></script>
+        <script type="text/javascript">
+            jQuery(document).ready(function($) {
+                $.ajax_navigator({
+                    'page_container': '#ajax-content'
+                }, function (e) {
+                    console.log($(this));
+                })
+            });
+        </script>
+    </body>
+</html>
